@@ -1,9 +1,10 @@
-version: '3'
+version: '3.2'
 
 services:
 
   db:
     image: mysql:5.7
+    container_name: db
     environment:
       MYSQL_DATABASE: drupal
       MYSQL_ROOT_PASSWORD: admin
@@ -12,7 +13,7 @@ services:
     volumes:
       - db_data:/var/lib/mysql
       - ./docker-local/mysql/my.cnf:/etc/my.cnf
-      - ./db/schema.sql:/docker-local-entrypoint-initdb.d/schema.sql
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/schema.sql
     restart: always
 
   drupal:
@@ -22,7 +23,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./app:/app
+      - .:/app
     restart: always
 
 # Persistent sql storage

@@ -1,4 +1,4 @@
-version: '3'
+version: '3.2'
 
 services:
 
@@ -23,7 +23,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ./app:/app
+      - .:/app
     restart: always
 
 # Persistent sql storage
